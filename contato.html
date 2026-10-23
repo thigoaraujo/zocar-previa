@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contato e cotação | Zocar Rio</title>
+  <meta name="description" content="Peça uma cotação de locação ou compra de caminhões e máquinas à Zocar Rio. Matriz no Rio de Janeiro/RJ e filial em Castelo/ES.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://zocarrio.com.br/contato.html">
+  <meta name="theme-color" content="#15181a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Zocar Rio">
+  <meta property="og:title" content="Contato e cotação | Zocar Rio">
+  <meta property="og:description" content="Peça uma cotação de locação ou compra de caminhões e máquinas à Zocar Rio. Matriz no Rio de Janeiro/RJ e filial em Castelo/ES.">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/simbolo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/zocar.css?v=28">
+</head>
+<body class="pagina-contato">
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <p class="demo">Prévia de demonstração. Unidades, códigos e contatos são fictícios.</p>
+
+  <header class="cabecalho">
+    <a class="marca" href="index.html" aria-label="Zocar Rio, página inicial">
+      <img src="img/logo-claro.png" alt="Grupo Zocar Rio" width="640" height="127">
+    </a>
+    <nav class="menu" aria-label="Principal">
+      <ul>
+          <li><a href="locacao-e-venda.html">Locação e venda</a></li>
+          <li><a href="quem-somos.html">Quem somos</a></li>
+          <li><a href="missao-e-valores.html">Missão e valores</a></li>
+          <li><a href="contato.html" aria-current="page">Contato</a></li>
+      </ul>
+    </nav>
+    <a class="cotacao-atalho" href="contato.html#cotacao" data-cotacao-atalho>Cotação <span class="mono" data-cotacao-total>00</span></a>
+  </header>
+
+  <main id="conteudo">
+<section class="titulo">
+      <div>
+        <span class="mono">Contato</span>
+        <h1>Cotação e contato</h1>
+      </div>
+      <p>As unidades que você marcou no pátio já vêm junto com o pedido.</p>
+    </section>
+
+    <section class="contato" id="cotacao">
+      <ul class="canais">
+        <li><a href="https://wa.me/5500000000000" target="_blank" rel="noopener"><span class="mono">WhatsApp</span><strong>(00) 00000-0000</strong></a></li>
+        <li><a href="tel:+550000000000"><span class="mono">Matriz RJ</span><strong>(21) 0000-0000</strong></a></li>
+        <li><a href="tel:+550000000001"><span class="mono">Filial ES</span><strong>(28) 0000-0000</strong></a></li>
+        <li><a href="mailto:contato@exemplo.com.br"><span class="mono">E-mail</span><strong>contato@exemplo.com.br</strong></a></li>
+        <li><div><span class="mono">Horário</span><span>Seg. a sex., 8h às 18h<br>Sáb., 8h às 12h</span></div></li>
+      </ul>
+
+      <form class="form" id="form-contato" action="enviar.php" method="post" novalidate>
+        <div class="form__cotacao" data-form-cotacao hidden>
+          <span class="mono">Unidades na cotação</span>
+          <ul></ul>
+        </div>
+        <input type="hidden" name="unidades" value="">
+        <div class="campos">
+          <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
+          <div class="campo"><label for="empresa">Empresa</label><input id="empresa" name="empresa" autocomplete="organization"></div>
+          <div class="campo"><label for="telefone">Telefone ou WhatsApp</label><input id="telefone" name="telefone" type="tel" autocomplete="tel" required></div>
+          <div class="campo"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email"></div>
+          <div class="campo">
+            <label for="interesse">Interesse</label>
+            <select id="interesse" name="interesse"><option>Locação</option><option>Compra</option><option>Locação ou compra</option></select>
+          </div>
+          <div class="campo"><label for="local">Local da operação</label><input id="local" name="local" placeholder="Cidade/UF"></div>
+          <div class="campo campo--cheio"><label for="mensagem">Prazo e detalhes</label><textarea id="mensagem" name="mensagem"></textarea></div>
+          <div class="campo campo--isca" aria-hidden="true"><label for="site">Não preencha</label><input id="site" name="site" tabindex="-1" autocomplete="off"></div>
+        </div>
+        <div class="form__rodape">
+          <small>Os dados servem só para responder a este pedido.</small>
+          <button class="botao" type="submit">Enviar pedido</button>
+        </div>
+        <p class="form__aviso" role="status"></p>
+      </form>
+    </section>
+
+    <section class="unidades-mapa" aria-label="Unidades">
+      <article>
+        <span class="mono">Matriz</span>
+        <h2>Rio de Janeiro/RJ</h2>
+        <p class="apoio">[ENDEREÇO DA MATRIZ]. Nesta prévia o mapa mostra só a cidade.</p>
+        <div class="mapa"><iframe title="Mapa: Rio de Janeiro, RJ" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Rio%20de%20Janeiro%2C%20RJ&z=11&output=embed"></iframe></div>
+      </article>
+      <article>
+        <span class="mono">Filial</span>
+        <h2>Castelo/ES</h2>
+        <p class="apoio">[ENDEREÇO DA FILIAL]. Nesta prévia o mapa mostra só a cidade.</p>
+        <div class="mapa"><iframe title="Mapa: Castelo, ES" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Castelo%2C%20ES&z=12&output=embed"></iframe></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__topo">
+      <p>Caminhões e máquinas da linha amarela, desde 1980.</p>
+      <a class="botao" href="locacao-e-venda.html">Ver o pátio <span class="seta" aria-hidden="true">→</span></a>
+    </div>
+    <div class="rodape__grade">
+      <div>
+        <img src="img/logo-claro.png" alt="Grupo Zocar Rio" width="640" height="127" loading="lazy">
+        <p>Locação e venda de caminhões e equipamentos. Matriz no Rio de Janeiro/RJ, filial em Castelo/ES.</p>
+      </div>
+      <div>
+        <h4>Páginas</h4>
+        <ul>
+        <li><a href="locacao-e-venda.html">Locação e venda</a></li>
+        <li><a href="quem-somos.html">Quem somos</a></li>
+        <li><a href="missao-e-valores.html">Missão e valores</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Unidades</h4>
+        <ul>
+          <li>Matriz, Rio de Janeiro/RJ</li>
+          <li>Filial, Castelo/ES</li>
+          <li>Seg. a sex., 8h às 18h</li>
+          <li>Sáb., 8h às 12h</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp (00) 00000-0000</a></li>
+          <li><a href="tel:+550000000000">RJ (21) 0000-0000</a></li>
+          <li><a href="tel:+550000000001">ES (28) 0000-0000</a></li>
+          <li><a href="mailto:contato@exemplo.com.br">contato@exemplo.com.br</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="rodape__creditos">Fotos ilustrativas do Wikimedia Commons, exceto Z-018 (acervo Zocar Rio): Martin Cooper (CC BY 2.0), Roy Luck (CC BY 2.0), ermell (CC BY-SA 4.0), Derek Harper (CC BY-SA 2.0), Fletcher (CC BY 4.0), Grendelkhan (CC BY-SA 4.0), Peabody Energy (CC BY 3.0), Acroterion (CC BY-SA 4.0), Duratray (CC BY-SA 4.0), Mr. Satterly (WTFPL).</p>
+    <p class="rodape__base"><span>© <span data-ano>2026</span> Zocar Rio. Prévia de demonstração.</span><span>Site por <a href="https://studiotavi.github.io" target="_blank" rel="noopener">Tavi studio</a></span></p>
+  </footer>
+
+  <div class="cotacao" data-cotacao hidden>
+    <p class="cotacao__lista"><span class="mono">Cotação</span> <span data-cotacao-lista></span></p>
+    <div class="cotacao__acoes">
+      <a class="botao" data-cotacao-whats href="https://wa.me/5500000000000" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
+      <a class="link" href="contato.html#cotacao">Formulário</a>
+      <button class="link" type="button" data-cotacao-limpar>Limpar</button>
+    </div>
+  </div>
+
+  <dialog class="dossie" data-dossie aria-labelledby="dossie-titulo"></dialog>
+
+  <script>window.ZOCAR_WHATSAPP = '5500000000000';</script>
+  <script src="js/patio.js?v=28"></script>
+  <script src="js/zocar.js?v=28"></script>
+</body>
+</html>
