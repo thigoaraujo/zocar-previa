@@ -305,3 +305,20 @@
   atualizarCotacao();
   if (/^#Z-\d+$/.test(location.hash)) abrirDossie(location.hash.slice(1));
 })();
+
+/* Menu do celular (17/11): botão abre e fecha o painel; fecha ao escolher uma seção ou com Esc */
+(function () {
+  var botao = document.querySelector('.menu-botao');
+  var menu = document.getElementById('menu-principal');
+  if (!botao || !menu) return;
+  var definir = function (aberto) {
+    botao.setAttribute('aria-expanded', String(aberto));
+    botao.lastChild.textContent = aberto ? 'Fechar' : 'Menu';
+    if (aberto) { var cab = document.querySelector('.cabecalho'); menu.style.setProperty('--topo-menu', Math.round(cab.getBoundingClientRect().bottom) + 'px'); }
+    document.body.classList.toggle('menu-aberto', aberto);
+  };
+  botao.addEventListener('click', function () { definir(botao.getAttribute('aria-expanded') !== 'true'); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) definir(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('menu-aberto')) { definir(false); botao.focus(); } });
+  window.matchMedia('(min-width: 760px)').addEventListener('change', function (q) { if (q.matches) definir(false); });
+})();
