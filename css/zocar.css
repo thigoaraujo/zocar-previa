@@ -909,3 +909,44 @@ html { scroll-padding-top: 80px; }
   .escala__detalhe--braco { grid-column: 7 / span 3; }
   .escala__detalhe--roda { grid-column: 10 / span 3; }
 }
+
+/* ==========================================================================
+   Movimento revisto (26/11)
+   1 Textos voltam a animar: títulos sobem linha a linha; textos, passos e cartões entram em sequência
+   2 Fotos abrem mais rápido (0,9 s) e disparam antes de entrar na tela (JS)
+   3 Direção da abertura segue o desenho: Portfólio e Contato pela borda, Cronologia em cascata
+   4 Sem zoom na abertura: só recorte + profundidade
+   ========================================================================== */
+
+/* 1. Títulos: cada palavra sobe de trás da máscara; o atraso cresce por linha */
+.mexe .titulo-mascara .pal { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .12em; margin-bottom: -.12em; }
+.mexe .titulo-mascara .pal > span { display: inline-block; transform: translateY(110%); transition: transform .85s var(--curva); transition-delay: calc(var(--d, 80ms) + var(--l, 0) * 90ms); }
+.mexe main > section.em-cena .titulo-mascara .pal > span { transform: none; }
+.mexe .titulo-mascara[data-revela] { opacity: 1 !important; transform: none !important; }
+.mexe .titulo-mascara .lorem::after { opacity: 0; transition: opacity .4s ease .9s; }
+.mexe main > section.em-cena .titulo-mascara .lorem::after { opacity: 1; }
+/* abertura: o título passa a entrar pela máscara, não mais pelo deslize do bloco */
+.mexe .abertura h1 { animation: none; --d: 250ms; }
+.mexe .portfolio__cartao h2 { --d: 500ms; }   /* espera o cartão deslizar */
+
+/* Textos, passos e cartões: fade curto, depois do título */
+.mexe .vazia [data-revela]:not([data-revela="mascara"]) { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--curva), transform .7s var(--curva); transition-delay: calc(200ms + var(--i, 0) * 90ms); }
+.mexe .vazia [data-revela]:not([data-revela="mascara"]).visivel { opacity: 1; transform: none; }
+.mexe .vazia .portfolio__cartao[data-revela] { opacity: 1; transform: none; transition: none; }  /* quem anima é o deslize do cartão */
+.mexe .vazia .chamada__acoes, .mexe .vazia .unidades article { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--curva), transform .7s var(--curva); }
+.mexe .vazia .chamada.em-cena .chamada__acoes { opacity: 1; transform: none; transition-delay: .55s; }
+.mexe .vazia .chamada.em-cena .unidades article { opacity: 1; transform: none; transition-delay: .7s; }
+.mexe .vazia .chamada.em-cena .unidades article + article { transition-delay: .8s; }
+
+/* 2 e 4. Fotos: recorte de 0,9 s, sem zoom */
+.mexe [data-revela="mascara"] img { transform: none; transition: clip-path .9s var(--curva); transition-delay: calc(var(--i, 0) * 120ms); }
+.mexe [data-revela="mascara"].visivel img { transform: none; }
+
+/* 3. Direções */
+.mexe .portfolio__foto[data-revela="mascara"] img,
+.mexe .chamada__foto[data-revela="mascara"] img { clip-path: inset(0 100% 0 0); }
+.mexe .portfolio__foto[data-revela="mascara"].visivel img,
+.mexe .chamada__foto[data-revela="mascara"].visivel img { clip-path: inset(0 0 0 0); }
+.mexe .marco--1984 figure { --i: 2; }
+.mexe .marco--hoje figure { --i: 4; }
+.mexe .vazia .marco--hoje .marco__sobre { transition-delay: .95s; }

@@ -339,3 +339,57 @@
   var v = document.querySelector('.abertura__video');
   if (v && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
 })();
+
+/* ---------- Movimento revisto (26/11) ----------
+   1. Títulos sobem linha a linha, saindo de trás de uma máscara (palavras agrupadas pela linha em que caem).
+   2. Fotos disparam um pouco antes de entrar na tela, com abertura mais curta (ver CSS). */
+(function () {
+  if (!document.documentElement.classList.contains('mexe')) return;
+
+  var titulos = Array.prototype.slice.call(document.querySelectorAll('main h1, main h2:not(.so-leitor)'));
+  titulos.forEach(function (t) {
+    var andar = function (no) {
+      Array.prototype.slice.call(no.childNodes).forEach(function (f) {
+        if (f.nodeType === 3) {
+          var partes = f.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          partes.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+            var cx = document.createElement('span'); cx.className = 'pal';
+            var dentro = document.createElement('span'); dentro.textContent = p;
+            cx.appendChild(dentro); frag.appendChild(cx);
+          });
+          f.parentNode.replaceChild(frag, f);
+        } else if (f.nodeType === 1 && !f.classList.contains('so-leitor') && !f.classList.contains('pal')) {
+          andar(f);
+        }
+      });
+    };
+    andar(t);
+    t.classList.add('titulo-mascara');
+  });
+
+  /* número da linha de cada palavra, para o atraso em cascata */
+  var numerar = function () {
+    titulos.forEach(function (t) {
+      var topo = null, linha = -1;
+      t.querySelectorAll('.pal').forEach(function (p) {
+        var y = Math.round(p.offsetTop);
+        if (topo === null || Math.abs(y - topo) > 4) { topo = y; linha++; }
+        p.style.setProperty('--l', linha);
+      });
+    });
+  };
+  numerar();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(numerar);
+  var espera; window.addEventListener('resize', function () { clearTimeout(espera); espera = setTimeout(numerar, 200); });
+
+  /* fotos: observador próprio, que dispara antes de a foto entrar na tela */
+  if ('IntersectionObserver' in window) {
+    var obsFoto = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visivel'); obsFoto.unobserve(e.target); } });
+    }, { threshold: 0, rootMargin: '0px 0px 12% 0px' });
+    document.querySelectorAll('[data-revela="mascara"]').forEach(function (f) { obsFoto.observe(f); });
+  }
+})();
