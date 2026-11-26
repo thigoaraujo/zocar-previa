@@ -105,7 +105,7 @@ p { margin: 0 0 1em; }
 /* ---------- Abertura ---------- */
 .abertura { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--carvao); color: var(--branco); isolation: isolate; }
 .abertura__foto { position: absolute; inset: 0; z-index: -2; }
-.abertura__foto img { width: 100%; height: 112%; object-fit: cover; object-position: 60% 50%; will-change: transform; }
+.abertura__foto img, .abertura__foto video { width: 100%; height: 112%; object-fit: cover; object-position: 60% 50%; will-change: transform; }
 .abertura::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(6, 20, 51, .55) 0%, rgba(6, 20, 51, 0) 22%, rgba(6, 20, 51, 0) 50%, rgba(6, 20, 51, .9) 100%), linear-gradient(90deg, rgba(6, 20, 51, .6) 0%, rgba(6, 20, 51, 0) 55%); }
 .abertura__conteudo { width: 100%; padding: 0 var(--margem) clamp(56px, 9vh, 96px); display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 24px 48px; align-items: end; }
 .abertura h1 { grid-column: 1; max-width: 15ch; font-size: clamp(2.6rem, 5.6vw, 5.6rem); text-wrap: balance; }
@@ -450,7 +450,7 @@ body.pagina-contato.tem-cotacao { padding-bottom: 0; }
   .marca img { width: 142px; }
   .demo { font-size: .68rem; }
   .abertura { align-items: flex-end; min-height: 100svh; }
-  .abertura__foto img { object-position: 68% 50%; }
+  .abertura__foto img, .abertura__foto video { object-position: 50% 50%; }
   .abertura::before { background: linear-gradient(180deg, rgba(6, 20, 51, .6) 0%, rgba(6, 20, 51, 0) 22%, rgba(6, 20, 51, .55) 42%, rgba(6, 20, 51, .92) 62%, rgba(6, 20, 51, .97) 100%); }
   .abertura h1 { font-size: clamp(2.4rem, 11.5vw, 3.3rem); }
   .abertura__lado p { font-size: 1rem; }
@@ -788,3 +788,15 @@ html { scroll-padding-top: 80px; }
   .certificacoes__selos { gap: 8px; }
   .chamada__acoes .botao { flex: 1 1 100%; justify-content: center; }
 }
+
+/* ---------- Lorem ipsum com contagem (26/11): mostra quantos caracteres cada campo comporta ---------- */
+.lorem::after {
+  content: attr(data-car) " car.";
+  display: inline-block; margin-left: .45rem; padding: 2px 6px; vertical-align: middle;
+  font: 500 .66rem/1.2 var(--mono); letter-spacing: 0; font-stretch: 100%; text-transform: none;
+  color: #fff; background: #c2185b; border-radius: 4px; white-space: nowrap;
+}
+.sem-contagem .lorem::after { display: none; }
+.demo__contagem { margin-left: .6rem; padding: 2px 8px; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 4px; cursor: pointer; }
+.demo__curto { display: none; }
+@media (max-width: 599px) { .demo__longo { display: none; } .demo__curto { display: inline; } .demo__contagem { padding: 0 6px; } }

@@ -20,7 +20,7 @@
   observar(document.querySelectorAll('[data-revela]'));
 
   var cab = document.querySelector('.cabecalho');
-  var foto = document.querySelector('[data-paralaxe] img');
+  var foto = document.querySelector('[data-paralaxe] img, [data-paralaxe] video');
   var panorama = document.querySelector('[data-panorama]');
   var largo = window.matchMedia('(min-width: 900px)');
   var pedido = false;
@@ -321,4 +321,21 @@
   menu.addEventListener('click', function (e) { if (e.target.closest('a')) definir(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.body.classList.contains('menu-aberto')) { definir(false); botao.focus(); } });
   window.matchMedia('(min-width: 760px)').addEventListener('change', function (q) { if (q.matches) definir(false); });
+})();
+
+// Prévia com lorem ipsum: liga e desliga os selos de contagem de caracteres
+(function () {
+  var b = document.querySelector('.demo__contagem');
+  if (!b) return;
+  b.addEventListener('click', function () {
+    var oculta = document.body.classList.toggle('sem-contagem');
+    b.setAttribute('aria-pressed', String(!oculta));
+    b.textContent = oculta ? 'Mostrar contagem' : 'Ocultar contagem';
+  });
+})();
+
+// Vídeo da abertura: quem pede menos movimento vê só a capa parada
+(function () {
+  var v = document.querySelector('.abertura__video');
+  if (v && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
 })();
