@@ -800,3 +800,63 @@ html { scroll-padding-top: 80px; }
 .demo__contagem { margin-left: .6rem; padding: 2px 8px; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 4px; cursor: pointer; }
 .demo__curto { display: none; }
 @media (max-width: 599px) { .demo__longo { display: none; } .demo__curto { display: inline; } .demo__contagem { padding: 0 6px; } }
+
+/* ==========================================================================
+   Cada seção cabe na tela (26/11): no computador, alturas medidas pela tela
+   (svh), não só pela largura. --tela = altura útil sob o cabeçalho fixo.
+   ========================================================================== */
+@media (min-width: 901px) {
+  :root {
+    --tela: calc(100svh - 72px);
+    --secao: clamp(40px, min(7vw, 7svh), 104px);
+    --secao-curta: clamp(36px, 5svh, 72px);
+    --r-bloco: clamp(20px, 3.4svh, 44px);
+    --r-titulo: clamp(14px, 2.2svh, 24px);
+  }
+  .vazia .rotulo { margin-bottom: clamp(12px, 2svh, 20px) !important; }
+
+  /* Quem somos: a seção inteira tem a altura da tela; as fotos se ajustam */
+  .escala { height: min(100svh, 1000px); grid-template-rows: auto minmax(0, 1fr); row-gap: var(--r-bloco); }
+  .escala__principal { min-height: 0; height: 100%; }
+  .escala__texto h2 { font-size: clamp(2rem, min(3.8vw, 6.4svh), 4rem); }
+  .escala__texto p:last-child { font-size: 1.05rem; }
+  .escala__detalhe--braco { aspect-ratio: auto; align-self: stretch; min-height: 140px; height: 100%; }
+  .escala__detalhe--roda { align-self: end; max-height: 100%; }
+
+  /* Portfólio: a foto nunca passa da altura útil */
+  .portfolio__foto { height: min(48vw, calc(100svh - 2 * var(--secao)), 680px); }
+  .portfolio__cartao { padding: clamp(28px, min(4vw, 5svh), 60px); }
+  .portfolio__cartao h2 { font-size: clamp(1.9rem, min(3.2vw, 5.4svh), 3.2rem); }
+
+  /* História */
+  .panorama { min-height: min(100svh, 900px); }
+  .panorama .verbos li { font-size: clamp(3rem, min(7.6vw, 13svh), 7.6rem); }
+
+  /* Cronologia: três marcos lado a lado, mesma altura de foto */
+  .cronologia { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2svh, 24px) var(--vao); min-height: min(100svh, 1000px); align-content: center; }
+  .cronologia__rotulo { grid-column: 1 / -1; margin: 0 !important; }
+  .marco--1980, .marco--1984, .marco--hoje { grid-column: auto; margin-top: 0; padding-bottom: 0; align-self: start; gap: clamp(10px, 1.6svh, 16px); }
+  .marco figure img, .marco--1980 figure img, .marco--1984 figure img, .marco--hoje figure img { width: 100%; height: clamp(200px, calc(100svh - 2 * var(--secao) - 340px), 560px); aspect-ratio: auto; object-fit: cover; }
+  .marco__ano { font-size: clamp(2.6rem, min(4.6vw, 8svh), 4.6rem); }
+  .marco--hoje .marco__sobre { position: static; width: auto; max-width: none; padding: 0; background: none; color: inherit; gap: clamp(10px, 1.6svh, 16px); }
+  .marco--hoje .marco__sobre .marco__ano { color: var(--petroleo); font-size: clamp(2.6rem, min(4.6vw, 8svh), 4.6rem); }
+  .mexe .vazia .marco--hoje .marco__sobre { opacity: 1; transform: none; }
+  .marco p { font-size: 1rem; }
+
+  /* Contato: foto acompanha o texto, sem altura mínima fixa */
+  .chamada { min-height: min(100svh, 1000px); }
+  .chamada__foto img { min-height: 0; }
+  .chamada__texto { align-self: center; }
+  .chamada h2 { font-size: clamp(1.9rem, min(3.4vw, 5.6svh), 3.4rem); }
+  .chamada__passos { gap: 6px; }
+  .unidades article { padding: clamp(10px, 1.8svh, 20px) 0; gap: 4px; }
+  .unidades h3 { font-size: clamp(1.3rem, 3svh, 1.8rem); }
+}
+@media (min-width: 901px) {
+  .chamada h2 { max-width: 22ch; }
+  .chamada__passos { max-width: 62ch; }
+  .chamada__texto { padding-top: var(--secao-curta); padding-bottom: var(--secao-curta); }
+}
+@media (min-width: 901px) {
+  .chamada__foto img { position: absolute; inset: 0; height: 100%; }
+}
