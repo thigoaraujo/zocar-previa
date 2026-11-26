@@ -840,7 +840,6 @@ html { scroll-padding-top: 80px; }
   .marco__ano { font-size: clamp(2.6rem, min(4.6vw, 8svh), 4.6rem); }
   .marco--hoje .marco__sobre { position: static; width: auto; max-width: none; padding: 0; background: none; color: inherit; gap: clamp(10px, 1.6svh, 16px); }
   .marco--hoje .marco__sobre .marco__ano { color: var(--petroleo); font-size: clamp(2.6rem, min(4.6vw, 8svh), 4.6rem); }
-  .mexe .vazia .marco--hoje .marco__sobre { opacity: 1; transform: none; }
   .marco p { font-size: 1rem; }
 
   /* Contato: foto acompanha o texto, sem altura mínima fixa */
@@ -859,4 +858,14 @@ html { scroll-padding-top: 80px; }
 }
 @media (min-width: 901px) {
   .chamada__foto img { position: absolute; inset: 0; height: 100%; }
+}
+
+/* Cronologia (26/11): "Hoje" volta a ter destaque, numa coluna dupla com a caixa azul sobre a foto */
+@media (min-width: 901px) {
+  .cronologia { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr); }
+  .marco--hoje { position: relative; align-self: stretch; min-height: 0; }
+  .marco--hoje figure { position: absolute; inset: 0; }
+  .marco--hoje figure img { height: 100%; object-position: 50% 60%; }
+  .marco--hoje .marco__sobre { position: absolute; left: 0; bottom: 0; width: min(440px, 88%); padding: clamp(18px, 3svh, 28px) clamp(20px, 2.4vw, 30px); background: var(--petroleo); color: var(--branco); }
+  .marco--hoje .marco__sobre .marco__ano { color: var(--amarelo); font-size: clamp(2.8rem, min(5vw, 9svh), 5rem); }
 }
