@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="css/zocar.css?v=48">
+  <link rel="stylesheet" href="css/zocar.css?v=49">
 </head>
 <body class="home vazia">
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -44,11 +44,15 @@
          Ordem: abertura, quem somos, portfólio, história (panorama + cronologia), certificações, contato.
          A versão anterior, com conteúdo ilustrativo, está em _backup-20261117/index.html. -->
 
-    <!-- 1. ABERTURA: foto em tela cheia, título à esquerda e texto de apoio à direita -->
+    <!-- 1. ABERTURA: foto em tela cheia, título sobre a foto, etiqueta presa à máquina -->
     <section class="abertura" aria-labelledby="t-abertura">
       <picture class="abertura__foto" data-paralaxe>
         <video class="abertura__video" autoplay muted loop playsinline preload="auto" poster="img/midia/banner-capa.webp" aria-hidden="true"><source src="img/midia/banner-960.mp4" type="video/mp4" media="(max-width: 760px)"><source src="img/midia/banner.mp4" type="video/mp4"></video>
       </picture>
+      <div class="etiqueta" aria-hidden="true">
+        <span class="etiqueta__ponto"></span><span class="etiqueta__fio"></span>
+        <span class="etiqueta__placa"><b><span class="lorem" data-car="5">Z-000</span></b><span class="lorem" data-car="22">Dolor sit amet consect</span><span class="lorem" data-car="18">Do eiusmod tempora</span></span>
+      </div>
       <div class="abertura__conteudo">
         <p class="rotulo abertura__rotulo">Início</p>
         <h1 id="t-abertura"><span class="lorem" data-car="50">Lorem ipsum dolor sit amet consectetur adipiscing.</span></h1>
@@ -196,7 +200,7 @@
   <dialog class="dossie" data-dossie aria-labelledby="dossie-titulo"></dialog>
 
   <script>window.ZOCAR_WHATSAPP = '5500000000000';</script>
-  <script src="js/patio.js?v=48"></script>
-  <script src="js/zocar.js?v=48"></script>
+  <script src="js/patio.js?v=49"></script>
+  <script src="js/zocar.js?v=49"></script>
 </body>
 </html>
