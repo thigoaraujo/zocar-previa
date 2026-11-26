@@ -739,7 +739,7 @@ html { scroll-padding-top: 80px; }
   .menu a { padding: 8px 0; }
   .etiqueta { top: clamp(110px, 18vh, 170px); }
 }
-@media (max-width: 759px) {
+@media (max-width: 900px) {  /* menu em botão até o tablet (26/11; antes 759px) */
   .cabecalho { grid-template-columns: auto auto; justify-content: space-between; }
   .menu-botao {
     display: inline-flex; align-items: center; gap: 10px; justify-self: end; min-height: 44px; padding: 0 14px;
@@ -799,7 +799,7 @@ html { scroll-padding-top: 80px; }
 .sem-contagem .lorem::after { display: none; }
 .demo__contagem { margin-left: .6rem; padding: 2px 8px; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 4px; cursor: pointer; }
 .demo__curto { display: none; }
-@media (max-width: 599px) { .demo__longo { display: none; } .demo__curto { display: inline; } .demo__contagem { padding: 0 6px; } }
+@media (max-width: 900px) { .demo__longo { display: none; } .demo__curto { display: inline; } .demo__contagem { padding: 0 6px; } }
 
 /* ==========================================================================
    Cada seção cabe na tela (26/11): no computador, alturas medidas pela tela
@@ -950,3 +950,44 @@ html { scroll-padding-top: 80px; }
 .mexe .marco--1984 figure { --i: 2; }
 .mexe .marco--hoje figure { --i: 4; }
 .mexe .vazia .marco--hoje .marco__sobre { transition-delay: .95s; }
+
+/* ==========================================================================
+   Menu no celular e no tablet (26/11)
+   Botão leve sobre a foto; painel com itens numerados, a seção atual marcada,
+   entrada em cascata e uma foto da frota fechando o painel.
+   ========================================================================== */
+@media (max-width: 900px) {
+  .menu-botao { box-shadow: none; background: rgba(6, 20, 51, .38); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-radius: 999px; padding: 0 18px 0 16px; letter-spacing: .01em; }
+  .cabecalho.rolou .menu-botao, .menu-aberto .menu-botao { background: rgba(255, 255, 255, .1); }
+
+  .menu { display: flex; flex-direction: column; padding: clamp(20px, 4svh, 40px) var(--margem) 0; }
+  .menu ul { counter-reset: item; }
+  .menu li { counter-increment: item; border-bottom: 1px solid var(--linha-clara); }
+  .menu li:first-child { border-top: 1px solid var(--linha-clara); }
+  .menu a { display: grid; grid-template-columns: 3.2em 1fr auto; align-items: baseline; padding: clamp(16px, 2.6svh, 24px) 0; font-size: clamp(1.7rem, 7vw, 2.4rem); line-height: 1.05; color: rgba(255, 255, 255, .62); letter-spacing: -.01em; }
+  .menu a::before { content: counter(item, decimal-leading-zero); font: 500 .8rem/1 var(--mono); letter-spacing: .06em; color: var(--cinza-claro); transform: translateY(-.35em); }
+  .menu a::after { display: block; content: "→"; position: static; height: auto; background: none; transform: none; font: 400 1.2rem/1 var(--texto); color: rgba(255, 255, 255, .45); transition: transform var(--rapido) var(--curva); }
+  .menu a:hover::after, .menu a:focus-visible::after { transform: translateX(4px); }
+  .menu a.ativo, .menu a:hover { color: var(--branco); }
+  .menu a.ativo::before { color: var(--branco); }
+  .menu a.ativo::after { content: "•"; color: var(--branco); }
+
+  /* entrada em cascata */
+  .mexe .menu li { opacity: 0; transform: translateY(14px); transition: opacity .35s ease, transform .5s var(--curva); }
+  .mexe .menu-aberto .menu li { opacity: 1; transform: none; }
+  .mexe .menu-aberto .menu li:nth-child(2) { transition-delay: .05s; }
+  .mexe .menu-aberto .menu li:nth-child(3) { transition-delay: .1s; }
+  .mexe .menu-aberto .menu li:nth-child(4) { transition-delay: .15s; }
+
+  /* foto da frota fecha o painel, em vez do vazio */
+  .menu::after {
+    content: ""; flex: 1 1 auto; min-height: 140px; margin: clamp(24px, 4svh, 40px) calc(-1 * var(--margem)) 0;
+    background: linear-gradient(180deg, var(--carvao) 0%, rgba(6, 20, 51, .15) 45%, rgba(6, 20, 51, 0) 100%), url(../img/midia/frota-perspectiva.webp) center 62% / cover no-repeat;
+  }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .menu a { font-size: 2.6rem; }
+}
+@media (max-width: 900px) {
+  .menu a { grid-template-columns: 2.6rem 1fr auto; }
+}
